@@ -45,7 +45,15 @@ Passo 08 -  Criando as operações/ recursos
  
 Passo 09 -  Aguardem os próximos passos
   
-Passo 10 - 
+Passo 10 - Debugar o projeto - Intellij
+
+    Passo 10.1 - Edit configurations -> Remote +   => Command line arguments for remote JVM: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5050
+	Passo 10.2 - Edit configurations -> Maven  +   
+	 # Parameters =>  Command line: spring-boot:run
+	 # Runner => -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5050"
+
+    Passo 10.3 -  ou: line of command by console:
+    # mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
    
 Passo 11 - 
 	
