@@ -3,7 +3,7 @@ package eti.br.webstuff.apispringbootaws.resource;
 import eti.br.webstuff.apispringbootaws.converters.UserConverter;
 import eti.br.webstuff.apispringbootaws.entity.Request;
 import eti.br.webstuff.apispringbootaws.entity.User;
-import eti.br.webstuff.apispringbootaws.resource.dto.request.UseLoginRequest;
+import eti.br.webstuff.apispringbootaws.resource.dto.request.UseLoginRequestDto;
 import eti.br.webstuff.apispringbootaws.resource.dto.request.UserSavedto;
 import eti.br.webstuff.apispringbootaws.service.RequestService;
 import eti.br.webstuff.apispringbootaws.service.UserService;
@@ -49,8 +49,9 @@ public class UserResource {
         return ResponseEntity.ok(updateUser);
     }
 
+    //TODO: Não esta funcionando - Implementar
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody UseLoginRequest useLoginRequest){
+    public ResponseEntity<User> login(@RequestBody UseLoginRequestDto useLoginRequest){
         User loginUser = userService.login(useLoginRequest.getEmail(), useLoginRequest.getPassword());
         return ResponseEntity.ok(loginUser);
     }

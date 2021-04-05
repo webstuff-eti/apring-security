@@ -33,6 +33,7 @@ public class User implements Serializable {
     // FIXME: [receberemos o password na API mas não retornaremos para o cliente]
     // FIXME: Durante a deserialização, O MESMO não é exibido
     @Setter(onMethod = @__({@JsonProperty}))
+    @Getter(onMethod = @__({@JsonIgnore}))
     @Column(length = 100, nullable = false)
     private String password;
 
