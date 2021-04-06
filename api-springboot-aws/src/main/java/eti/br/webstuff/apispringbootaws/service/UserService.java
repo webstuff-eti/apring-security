@@ -1,6 +1,7 @@
 package eti.br.webstuff.apispringbootaws.service;
 
 import eti.br.webstuff.apispringbootaws.entity.User;
+import eti.br.webstuff.apispringbootaws.exceptions.GenericNotFoundException;
 import eti.br.webstuff.apispringbootaws.repository.UserRepository;
 import eti.br.webstuff.apispringbootaws.service.util.HashUtil;
 import javassist.NotFoundException;
@@ -34,10 +35,10 @@ public class UserService {
         return updatedUser;
     }
 
-    public User getById(Long id) throws NotFoundException {
+    public User getById(Long id){
         Optional<User> result = repository.findById(id);
 
-        return result.orElseThrow(()-> new NotFoundException("There are not user with id = " + id));
+        return result.orElseThrow(()-> new GenericNotFoundException("There are not user with id = " + id));
     }
 
     public List<User> listAll() {

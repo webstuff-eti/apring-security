@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import eti.br.webstuff.apispringbootaws.entity.RequestStage;
 import eti.br.webstuff.apispringbootaws.enums.RequestStateEnum;
+import eti.br.webstuff.apispringbootaws.exceptions.GenericNotFoundException;
 import eti.br.webstuff.apispringbootaws.model.PageModel;
 import eti.br.webstuff.apispringbootaws.model.PageRequestModel;
 import eti.br.webstuff.apispringbootaws.repository.RequestRepository;
@@ -42,9 +43,9 @@ public class RequestStageService {
 
     }
 
-    public RequestStage getById(Long id) throws NotFoundException {
+    public RequestStage getById(Long id) {
         Optional<RequestStage> result = requestStageRepository.findById(id);
-        return result.orElseThrow(()-> new NotFoundException("There are not request stage with id = " + id));
+        return result.orElseThrow(()-> new GenericNotFoundException("There are not request stage with id = " + id));
     }
 
     //FIXME: Lista os estágios dado o ID da requisição

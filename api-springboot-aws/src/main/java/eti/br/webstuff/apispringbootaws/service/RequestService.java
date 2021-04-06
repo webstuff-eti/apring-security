@@ -2,6 +2,7 @@ package eti.br.webstuff.apispringbootaws.service;
 
 import eti.br.webstuff.apispringbootaws.entity.Request;
 import eti.br.webstuff.apispringbootaws.enums.RequestStateEnum;
+import eti.br.webstuff.apispringbootaws.exceptions.GenericNotFoundException;
 import eti.br.webstuff.apispringbootaws.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,7 @@ public class RequestService {
 
     public Request getById(Long id){
         Optional<Request> result = repository.findById(id);
-
-        return result.get();
+        return result.orElseThrow(()-> new GenericNotFoundException("There are not request with id = " + id));
     }
 
     public List<Request> listAll(){
