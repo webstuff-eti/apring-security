@@ -3,6 +3,9 @@ package eti.br.webstuff.apispringbootaws.resource;
 import eti.br.webstuff.apispringbootaws.converters.UserConverter;
 import eti.br.webstuff.apispringbootaws.entity.Request;
 import eti.br.webstuff.apispringbootaws.entity.User;
+import eti.br.webstuff.apispringbootaws.model.PageModel;
+import eti.br.webstuff.apispringbootaws.model.PageRequestModel;
+import eti.br.webstuff.apispringbootaws.model.PageSimpleRequestModel;
 import eti.br.webstuff.apispringbootaws.resource.dto.request.UseLoginRequestDto;
 import eti.br.webstuff.apispringbootaws.resource.dto.request.UserSavedto;
 import eti.br.webstuff.apispringbootaws.service.RequestService;
@@ -72,6 +75,16 @@ public class UserResource {
     public ResponseEntity<List<User>> listAll(){
         List<User> users = userService.listAll();
         return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/simple/by-page")
+    public ResponseEntity<PageModel<User>> listAllByPage(
+            @RequestParam(value = "numPage") int numPage,
+            @RequestParam(value = "sizePage") int sizePage
+    ){
+        PageSimpleRequestModel psr = new PageSimpleRequestModel(numPage, sizePage);
+        PageModel<User> usersByPage = userService.listAllSimpleOnLazyMode(psr);
+        return ResponseEntity.ok(usersByPage);
     }
 
 }
