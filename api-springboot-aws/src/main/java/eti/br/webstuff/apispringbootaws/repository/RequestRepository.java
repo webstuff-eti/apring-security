@@ -22,7 +22,7 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     //FIXME: RETORNA O NÚMERO DE LINHAS QUE SERÃO AFETADAS PELO UPDATE
     @Transactional(readOnly = false)
     @Modifying
-    @Query("UPDATE request SET state = ?2 WHERE id = ?1")
+    @Query("UPDATE request SET stateEnum = ?2 WHERE id = ?1")
     public int updateStatus(Long id, RequestStateEnum stateEnum);
 
 }
